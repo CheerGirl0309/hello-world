@@ -12,3 +12,15 @@ print("l[1]=",l[1])
 l.append("cheer")
 l.insert(2,'asm')
 print("l=",l)
+
+
+tuple = ('arry','feb','hony',l)
+
+print("tuple=",tuple)
+print("tuple.len=",len(tuple))
+print("tuple[0]=",tuple[3])
+
+tuple[3][0]='pony'
+print("tuple=",tuple)
+
+备注：list指向可变，tuple指向不可变
