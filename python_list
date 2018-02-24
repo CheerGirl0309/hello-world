@@ -1,0 +1,14 @@
+l = ['tom','jerry','jack']
+
+print("l=",l)
+print("len=",len(l))
+print("l[0]=",l[0])
+print("l[1]=",l[1])
+print("l[2]=",l[2])
+print("l[-1]=",l[-1])
+
+l.pop(2)
+print("l[1]=",l[1])
+l.append("cheer")
+l.insert(2,'asm')
+print("l=",l)
