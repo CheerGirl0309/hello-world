@@ -1,0 +1,16 @@
+a = -100
+
+print("a=",abs(a))
+
+print("c=",max(3,5,-1,2))
+
+
+print("d=",int('123'))
+
+print("e=",float('12.34'))
+
+print("f=",str(100))
+
+print("g=",bool(0))
+
+print("h=",hex(54))
