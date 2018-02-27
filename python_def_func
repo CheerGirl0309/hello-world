@@ -48,3 +48,10 @@ def move(x, y, step, angle=0):
 	函数体内可以用return随时返回函数结果
 	函数执行完毕后没有return语句时，自动return none
 	函数可以返回多个值，但其实就是一个tuple
+练习题
+import math
+
+def quadratic(a, b, c):
+    nx = (-b + math.sqrt(b*b - 4*a*c))/ (2*a)
+    ny = (-b - math.sqrt(b*b - 4*a*c))/ (2*a)
+    return nx,ny
