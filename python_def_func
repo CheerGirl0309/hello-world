@@ -1,0 +1,50 @@
+def my_abs(x):
+    if x > 0:
+        return x
+    else:
+        return -x
+
+如果把my_abs已经定义到*.py文件中，那么需要在该文件下目录下启动python解释器，用
+from 文件名(不包含后缀) import my_abs
+   例如：from hello import my_abs
+   
+空函数：如果想定义一个什么都不做的空函数，可以用pass语句
+
+def pop():
+    pass
+
+备注：pass并非不是什么都不做，而是起到了占位符的作用，后续可在此添加代码，类似打桩
+
+参数检查：
+   如果传入函数的参数类型不匹配或者个数不匹配，python会提示，也可在代码中添加判断入参
+   
+def my_abs(x):
+    if not isinstance(x,(int, float)):
+        raise TypeError('bad operand type')
+    if x >= 0:
+        return x
+    else:
+        return -x
+		
+返回多个值：
+import math
+
+def move(x, y, step, angle=0):
+    nx = x + step*math.cos(angle)
+    ny = y - step*math.sin(angle)
+    return nx,ny
+	
+在该文件目录下启动Python解释器然后
+>>>import math
+>>>from hello import move
+>>>x,y=move(100,100,60,math.pi/6)
+>>>print(x,y)
+
+备注：虽然看起来是返回了多个值，但是其实是返回了tuple
+
+小结：
+    定义函数时，需要确定函数名和参数个数
+	如果有必要，可以先对入参进行参数检查
+	函数体内可以用return随时返回函数结果
+	函数执行完毕后没有return语句时，自动return none
+	函数可以返回多个值，但其实就是一个tuple
