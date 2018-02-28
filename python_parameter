@@ -1,0 +1,87 @@
+#python函数定义简单但灵活性强，除了必选参数还可以使用默认参数、可变参数、关键字参数
+#Python中必选参数在前，默认参数在后，否则Python会报错
+#设置默认参数时把变化大的参数放在前面，变化小的放到后面，变化小的参数可以作为默认参数
+
+import math
+def power(x, n=2):
+    s = 1
+    while n>0:
+        n = n-1
+        s = s * x
+    return s
+#默认参数
+#可以不按顺序提供默认参数，当不按顺序提供时，需要把参数名协商
+#使用默认参数的坑如下：
+def add_end(L=[]):
+    L.append('END')
+    return L
+	
+#如果多次调用add_end()，那么返回结果是['END','END',...]
+#原因是当python函数在定义的时候，L的值是被计算出来的，即[]，因为默认L为变量指向[]，每次
+#调用的时候，如果改变L的内容，相当于指向内容发生改变，默认参数的内容也就变了，不在是函数定义的[]
+#所以定义默认参数一定要指向不变对象
+#即修改为如下
+def add_end(L=None):
+    if L is None:
+        L=[]
+    L.append('END')
+    return L
+	
+#可变参数
+#可变参数就是参入的参数的个数不是固定的，可以是1个，2个还可以是0个
+#举例：计算a*a+b*b+c*c*c
+#要定义这种函数，我们必须得确定输入的参数，由于参数不固定，我们可以把a,b,c作为一个list
+#或者tuple传进去
+
+def cale(numbers):
+    sum = 0
+    for n in numbers:
+        sum = sum + n*n*
+    return sum
+
+然后调用的时候需要传入list或者tuple
+cale((1,2,3,4))或cale([1,2,3])
+
+也可以利用可变参数，调用函数的方式进行简化
+cale(1,2,3,4)
+
+所以我们可以把函数的入参变为可变参数
+def calc(*numbers):
+    sum=0
+    for n in numbers:
+        sum = sum + n*n
+    return sum
+
+即可变参数与list和tuple的区别是参数前加*，我们也可以将list和tuple转化为可变参数
+即num=[1,2,3],calc(*num)
+
+#关键字参数
+#关键字参数就是将参数在函数内部自动转化为dict
+
+def person(name,age,**kw):
+    print('name:', name, 'age:',age,'other:',kw)
+>>>person('job',17,city='beijing')
+name:job age:17 other:{'city':'beijing'}
+>>>person('mary',16,gender='F',city='canda')
+name:mary age:16 other:{'gender':'F','city':'canda'}
+
+#和可变参数类似，可以讲dict转为关键字传进去
+>>>extra={'city':'beijing','job':'engineer'}
+>>>person('tom',18,city=extra['city'],job=extra['engineer'])
+也可以写为
+>>>persom('tom',18,**extra)/***extra表示将extra这个dict的key-value用关键字传入到函数的**kw参数，kw将获得一个dict，注意kw获得的是extra的拷贝，对kw的改动不悔影响到函数外的extra*/
+结果都为：
+name:tom age:18 other:{'city':'beijing','job':'engineer'}
+
+
+#命名关键字参数
+#在传参的过程中，用户可以传入不受限制的关键字参数，拿person为例
+>>>person('tom',24,city='beijing',job='engineer',zipode=123456)
+如果要限制关键字参数的名字，就可以用命名关键字参数，比如只接受city和job的关键字参数如下：
+使用特殊分割符*，*后面的参数被视为命名关键字参数
+def person(name,age,*,city,job)
+    print('name:',name,'age:'age,'city:'city,'job:',job)
+>>>person('tom',24,city='beijing',job='engineer')
+
+如果定义了一个可变参数，那么后面跟着的命名关键字参数就就不需要特殊分隔符*了
+命名参数符必须得传入参数名，和位置参数不同，如果不传入参数名，则调用出错
